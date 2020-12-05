@@ -5,9 +5,10 @@ namespace App;
 use App\Entity\Rate;
 use App\Entity\User;
 use App\Entity\UserEuclideanDistance;
+use App\Service\RecommendationCalculatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-class Service
+class RecommendationCalculator implements RecommendationCalculatorInterface
 {
     private $rateRepository;
 
@@ -21,7 +22,7 @@ class Service
      * @param Rate[] $user2
      * @return UserEuclideanDistance
      */
-    private function euclideanScore(array $user1Rates, array $user2Rates): UserEuclideanDistance
+    public function euclideanScore(array $user1Rates, array $user2Rates): UserEuclideanDistance
     {
         $squaredDiff = [];
         /** @var Rate $movie1Rate */
@@ -42,7 +43,7 @@ class Service
 
     }
 
-    private function personScore(array $user1Rates, array $user2Rates)
+    public function personScore(array $user1Rates, array $user2Rates)
     {
 
     }
